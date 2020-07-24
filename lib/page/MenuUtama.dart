@@ -7,33 +7,46 @@ class MenuUtama extends StatefulWidget {
   _MenuUtamaState createState() => _MenuUtamaState();
 }
 
+
+
+
+
 class _MenuUtamaState extends State<MenuUtama> {
+
+  String nama = "";
+
   Future<String> getNama() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
+  
     return pref.getString("KEY_REALNAME") ?? "No Nama";
-  }
-
-  String nama;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    getNama().then((value) {
-      nama = value;
-
-      print("sasasa");
-      print(nama);
-    });
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+
+    getNama().then((value){
+          // print(nama);
+        
+
+        setState(() {
+           nama = value;
+        });
+        //  print(nama);
+      
+      
+      });
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
-          child: Text("nama"),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Text("HALO " +nama),
+             
+            ],
+          ),
         ),
       ),
     );

@@ -99,10 +99,17 @@ class _MainPageState extends State<MainPage> {
               password: _textPassword.text.toString());
 
           if (data != null) {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) {
-              return MenuUtama();
-            }));
+
+            
+            if(data['error']== "NO")
+            {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) {
+                return MenuUtama();
+              }));
+            }
+            
+           
           }
         }
 
